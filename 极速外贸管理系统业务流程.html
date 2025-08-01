@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速外贸管理系统业务流程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: '微软雅黑', 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .company-info {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .flow-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #2196F3;
+            border-left: 5px solid #2196F3;
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        .flow-step {
+            background: #f8f9ff;
+            border: 2px solid #e3f2fd;
+            border-radius: 15px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15);
+            border-color: #2196F3;
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            color: #1976D2;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .step-desc {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .arrow {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2196F3;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .flow-step:last-child .arrow {
+            display: none;
+        }
+        
+        .role-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .role-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .role-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .role-duties {
+            list-style: none;
+        }
+        
+        .role-duties li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .role-duties li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .module-title {
+            font-size: 1.3rem;
+            color: #1976D2;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .module-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .module-features {
+            list-style: none;
+        }
+        
+        .module-features li {
+            padding: 5px 0;
+            padding-left: 15px;
+            position: relative;
+            color: #666;
+        }
+        
+        .module-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2196F3;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .highlight-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .flow-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .flow-step {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>极速外贸管理系统业务流程</h1>
+            <div class="company-info">
+                <strong>鸿思特科技有限公司</strong><br>
+                联系人：陈志成 | 电话：17600198256 | 邮箱：hst_co@163.com
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- 主要业务流程 -->
+            <div class="flow-section">
+                <h2 class="section-title">🔄 核心业务流程</h2>
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">客户开发</div>
+                        <div class="step-desc">
+                            • 客户信息录入<br>
+                            • 客户分级管理<br>
+                            • 跟进进度跟踪<br>
+                            • 客户公海分配
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">产品管理</div>
+                        <div class="step-desc">
+                            • 产品档案建立<br>
+                            • 供应商管理<br>
+                            • 价格体系维护<br>
+                            • 库存信息同步
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">报价管理</div>
+                        <div class="step-desc">
+                            • 快速报价生成<br>
+                            • 价格策略设置<br>
+                            • 报价单追踪<br>
+                            • 成交率统计
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">订单处理</div>
+                        <div class="step-desc">
+                            • 销售订单创建<br>
+                            • 订单审批流程<br>
+                            • 交货期管理<br>
+                            • 寄样跟踪
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">采购管理</div>
+                        <div class="step-desc">
+                            • 采购需求分析<br>
+                            • 供应商选择<br>
+                            • 采购订单管理<br>
+                            • 交货跟踪
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-title">库存出运</div>
+                        <div class="step-desc">
+                            • 入库管理<br>
+                            • 库存盘点<br>
+                            • 出运安排<br>
+                            • 物流跟踪
+                        </div>
+                        <div class="arrow">→</div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="step-number">7</div>
+                        <div class="step-title">财务管理</div>
+                        <div class="step-desc">
+                            • 应收款管理<br>
+                            • 应付款管理<br>
+                            • 利润核算<br>
+                            • 财务统计
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 角色职责 -->
+            <div class="flow-section">
+                <h2 class="section-title">👥 角色职责分工</h2>
+                <div class="role-section">
+                    <div class="role-card">
+                        <div class="role-title">👔 老板</div>
+                        <ul class="role-duties">
+                            <li>全局业务监控</li>
+                            <li>重要决策审批</li>
+                            <li>利润统计分析</li>
+                            <li>战略方向制定</li>
+                            <li>业绩考核管理</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-title">👨‍💼 主管</div>
+                        <ul class="role-duties">
+                            <li>团队业务监督</li>
+                            <li>流程审批管理</li>
+                            <li>客户分配协调</li>
+                            <li>异常情况处理</li>
+                            <li>团队绩效评估</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-title">💼 业务员</div>
+                        <ul class="role-duties">
+                            <li>客户开发维护</li>
+                            <li>订单跟进处理</li>
+                            <li>报价单管理</li>
+                            <li>样品寄送跟踪</li>
+                            <li>客户关系维护</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="role-card">
+                        <div class="role-title">💰 财务</div>
+                        <ul class="role-duties">
+                            <li>收付款管理</li>
+                            <li>成本核算分析</li>
+                            <li>财务报表统计</li>
+                            <li>利润分析</li>
+                            <li>资金流管控</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 功能模块 -->
+            <div class="flow-section">
+                <h2 class="section-title">⚙️ 核心功能模块</h2>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">👥</span>
+                            客户管理
+                        </div>
+                        <ul class="module-features">
+                            <li>客户档案管理</li>
+                            <li>客户公海池</li>
+                            <li>跟进进度跟踪</li>
+                            <li>客户查重功能</li>
+                            <li>客户来源分析</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">📦</span>
+                            产品管理
+                        </div>
+                        <ul class="module-features">
+                            <li>产品信息维护</li>
+                            <li>供应商管理</li>
+                            <li>价格体系管理</li>
+                            <li>产品分类管理</li>
+                            <li>同行信息分析</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">💰</span>
+                            报价管理
+                        </div>
+                        <ul class="module-features">
+                            <li>智能报价生成</li>
+                            <li>价格策略设置</li>
+                            <li>报价有效期控制</li>
+                            <li>报价成功率统计</li>
+                            <li>报价单打印导出</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">📋</span>
+                            订单管理
+                        </div>
+                        <ul class="module-features">
+                            <li>销售订单处理</li>
+                            <li>寄样管理跟踪</li>
+                            <li>订单状态监控</li>
+                            <li>交货期管理</li>
+                            <li>订单审批流程</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">🏭</span>
+                            采购管理
+                        </div>
+                        <ul class="module-features">
+                            <li>采购需求管理</li>
+                            <li>供应商协调</li>
+                            <li>采购订单跟踪</li>
+                            <li>交货期监控</li>
+                            <li>采购成本分析</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">📊</span>
+                            库存管理
+                        </div>
+                        <ul class="module-features">
+                            <li>实时库存查询</li>
+                            <li>出入库管理</li>
+                            <li>库存盘点功能</li>
+                            <li>多仓库管理</li>
+                            <li>库存预警提醒</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">🚢</span>
+                            出运管理
+                        </div>
+                        <ul class="module-features">
+                            <li>出运计划安排</li>
+                            <li>物流信息跟踪</li>
+                            <li>运输方式选择</li>
+                            <li>出运状态监控</li>
+                            <li>出运单据管理</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">💳</span>
+                            财务管理
+                        </div>
+                        <ul class="module-features">
+                            <li>应收应付管理</li>
+                            <li>收付款跟踪</li>
+                            <li>利润分析统计</li>
+                            <li>财务报表生成</li>
+                            <li>成本核算分析</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">📈</span>
+                            统计分析
+                        </div>
+                        <ul class="module-features">
+                            <li>业务数据统计</li>
+                            <li>销售业绩分析</li>
+                            <li>客户价值分析</li>
+                            <li>产品销售排行</li>
+                            <li>利润趋势分析</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-title">
+                            <span class="module-icon">⚙️</span>
+                            系统管理
+                        </div>
+                        <ul class="module-features">
+                            <li>用户权限管理</li>
+                            <li>角色配置管理</li>
+                            <li>基础数据维护</li>
+                            <li>系统参数设置</li>
+                            <li>数据备份还原</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 系统优势 -->
+            <div class="highlight-box">
+                <div class="highlight-title">🌟 系统核心优势</div>
+                <p>全流程数字化管理 | 多角色协同工作 | 实时数据统计 | 智能预警提醒 | 移动办公支持</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

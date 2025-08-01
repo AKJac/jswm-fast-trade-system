@@ -1,0 +1,104 @@
+// 全局样式文件
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+// 覆盖ElementPlus默认样式
+.el-menu-item.is-active {
+  background-color: #409eff !important;
+  color: white !important;
+}
+
+.el-menu-item:hover {
+  background-color: #66b1ff !important;
+  color: white !important;
+}
+
+// 自定义主题色
+:root {
+  --el-color-primary: #409eff;
+  --el-color-primary-light-3: #79bbff;
+  --el-color-primary-light-5: #a0cfff;
+  --el-color-primary-light-7: #c6e2ff;
+  --el-color-primary-light-8: #d9ecff;
+  --el-color-primary-light-9: #ecf5ff;
+  --el-color-primary-dark-2: #337ecc;
+}
+
+// 页面容器样式
+.page-container {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.page-header {
+  margin-bottom: 20px;
+  
+  h1 {
+    margin: 0;
+    color: #303133;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .breadcrumb {
+    margin-top: 8px;
+  }
+}
+
+// 卡片样式
+.custom-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+// 表格样式
+.custom-table {
+  .el-table__header {
+    th {
+      background-color: #f5f7fa;
+      color: #606266;
+      font-weight: 600;
+    }
+  }
+}
+
+// 统计卡片样式
+.stat-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  
+  .stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+}
+
+// 响应式布局
+@media (max-width: 768px) {
+  .page-container {
+    padding: 10px;
+  }
+  
+  .el-table {
+    font-size: 12px;
+  }
+} 
