@@ -43,16 +43,38 @@
    - 库存管理功能
    - 自动生成产品货号
 
+3. **供应商管理模块**
+   - 供应商列表查询（支持分页、搜索、筛选）
+   - 供应商详情查看
+   - 供应商信息增删改查
+   - 供应商编号和名称查重
+   - 供应商统计信息
+   - 供应商选项接口（用于下拉选择）
+   - 根据产品搜索供应商
+   - API接口配置管理
+   - 自动生成供应商编号
+
+4. **文件上传模块**
+   - 图片文件上传（产品图片、头像等）
+   - Excel文件上传（批量导入数据）
+   - 文档文件上传（PDF、Word等）
+   - 文件类型和大小验证
+   - 文件存储路径管理
+
+5. **统计分析模块**
+   - 仪表盘统计数据
+   - 客户统计分析
+   - 产品统计分析
+   - 供应商统计分析
+   - 系统运行概览
+
 ### 待实现功能
 
-3. **报价管理模块**
-4. **订单管理模块**
-5. **供应商管理模块**
-6. **库存管理模块**
-7. **财务管理模块**
-8. **系统管理模块**
-9. **统计分析模块**
-10. **文件上传功能**
+6. **报价管理模块**（部分完成 - 实体类已创建）
+7. **订单管理模块**
+8. **库存管理模块**
+9. **财务管理模块**
+10. **系统管理模块**（用户、角色、权限管理）
 
 ## 项目结构
 
@@ -71,16 +93,24 @@ java-backend/
 │   │   └── QuotationItem.java              # 报价单明细实体
 │   ├── mapper/                             # 数据访问层
 │   │   ├── CustomerMapper.java             # 客户Mapper
-│   │   └── ProductMapper.java              # 产品Mapper
+│   │   ├── ProductMapper.java              # 产品Mapper
+│   │   ├── SupplierMapper.java             # 供应商Mapper
+│   │   ├── QuotationMapper.java            # 报价单Mapper
+│   │   └── QuotationItemMapper.java        # 报价单明细Mapper
 │   ├── service/                            # 服务层
 │   │   ├── CustomerService.java            # 客户服务接口
 │   │   ├── ProductService.java             # 产品服务接口
+│   │   ├── SupplierService.java            # 供应商服务接口
 │   │   └── impl/
 │   │       ├── CustomerServiceImpl.java    # 客户服务实现
-│   │       └── ProductServiceImpl.java     # 产品服务实现
+│   │       ├── ProductServiceImpl.java     # 产品服务实现
+│   │       └── SupplierServiceImpl.java    # 供应商服务实现
 │   ├── controller/                         # 控制层
 │   │   ├── CustomerController.java         # 客户控制器
 │   │   ├── ProductController.java          # 产品控制器
+│   │   ├── SupplierController.java         # 供应商控制器
+│   │   ├── FileUploadController.java       # 文件上传控制器
+│   │   ├── StatisticsController.java       # 统计分析控制器
 │   │   └── HealthController.java           # 健康检查控制器
 │   └── config/                             # 配置类
 │       ├── MybatisPlusConfig.java          # MyBatis-Plus配置
