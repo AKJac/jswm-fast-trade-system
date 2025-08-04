@@ -33,9 +33,18 @@
    - 客户统计信息
    - 自动生成客户编号
 
+2. **产品管理模块**
+   - 产品列表查询（支持分页、搜索、筛选）
+   - 产品详情查看
+   - 产品信息增删改查
+   - 产品货号和名称查重
+   - 产品统计信息
+   - 产品选项接口（用于下拉选择）
+   - 库存管理功能
+   - 自动生成产品货号
+
 ### 待实现功能
 
-2. **产品管理模块**
 3. **报价管理模块**
 4. **订单管理模块**
 5. **供应商管理模块**
@@ -56,15 +65,27 @@ java-backend/
 │   │   └── PageResult.java                 # 分页响应结果
 │   ├── entity/                             # 实体类
 │   │   ├── Customer.java                   # 客户实体
-│   │   └── Product.java                    # 产品实体
+│   │   ├── Product.java                    # 产品实体
+│   │   ├── Supplier.java                   # 供应商实体
+│   │   ├── Quotation.java                  # 报价单实体
+│   │   └── QuotationItem.java              # 报价单明细实体
 │   ├── mapper/                             # 数据访问层
-│   │   └── CustomerMapper.java             # 客户Mapper
+│   │   ├── CustomerMapper.java             # 客户Mapper
+│   │   └── ProductMapper.java              # 产品Mapper
 │   ├── service/                            # 服务层
 │   │   ├── CustomerService.java            # 客户服务接口
+│   │   ├── ProductService.java             # 产品服务接口
 │   │   └── impl/
-│   │       └── CustomerServiceImpl.java    # 客户服务实现
-│   └── controller/                         # 控制层
-│       └── CustomerController.java         # 客户控制器
+│   │       ├── CustomerServiceImpl.java    # 客户服务实现
+│   │       └── ProductServiceImpl.java     # 产品服务实现
+│   ├── controller/                         # 控制层
+│   │   ├── CustomerController.java         # 客户控制器
+│   │   ├── ProductController.java          # 产品控制器
+│   │   └── HealthController.java           # 健康检查控制器
+│   └── config/                             # 配置类
+│       ├── MybatisPlusConfig.java          # MyBatis-Plus配置
+│       ├── CorsConfig.java                 # 跨域配置
+│       └── GlobalExceptionHandler.java     # 全局异常处理
 ├── src/main/resources/
 │   ├── application.yml                     # 配置文件
 │   ├── sql/
@@ -115,12 +136,21 @@ mvn clean compile
 
 5. **启动应用**
 ```bash
+# 使用Maven启动
 mvn spring-boot:run
+
+# 或者使用启动脚本
+./start.sh
 ```
 
 6. **访问API文档**
 ```
 http://localhost:8080/api/doc.html
+```
+
+7. **健康检查**
+```
+http://localhost:8080/api/health
 ```
 
 ### 生产环境部署
