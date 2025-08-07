@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jisu_ftm?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8mb4
+    username: jisu
+    password: jisu123!
+  jpa:
+    hibernate:
+      ddl-auto: update # dev env; prod use none
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  flyway:
+    enabled: true
+
+server:
+  port: 4000
+
+logging:
+  level:
+    root: info
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql: trace
+
+jwt:
+  secret: "change_me_very_secret_key_which_should_be_long_enough"
+  expiration: 604800 # 7 days in seconds
